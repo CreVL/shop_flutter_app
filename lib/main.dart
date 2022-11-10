@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/widgets/product_item.dart';
+import './screens/products_overview_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: ProductsOverviewScreen(),
     );
   }
 }
