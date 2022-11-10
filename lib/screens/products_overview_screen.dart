@@ -23,7 +23,7 @@ class ProductsOverviewScreen extends StatelessWidget {
       title: 'Котлеты из говядины',
       description: 'Натуральное мясо говядины ломтиками',
       price: 500,
-      imageUrl: 'https://ic.wampi.ru/2022/11/10/IMG_2503.jpg',
+      imageUrl: 'https://i.ibb.co/23rX9x6/image-2022-11-10-18-38-07.png',
     ),
     Product(
       id: 'p4',
