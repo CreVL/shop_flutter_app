@@ -16,12 +16,18 @@ class ProductItem extends StatelessWidget {
       ),
       footer: GridTileBar(
         backgroundColor: Colors.black54,
+        leading: IconButton(
+          icon: Icon(Icons.favorite),
+          onPressed: () {  },
+        ),
         title: Text(
           title,
           textAlign: TextAlign.center,
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
         ),
+        trailing: IconButton(icon: Icon(Icons.shopping_cart),
+          onPressed: () {  },),
       ),
     );
   }
