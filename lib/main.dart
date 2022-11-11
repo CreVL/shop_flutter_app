@@ -16,7 +16,10 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Color.fromARGB(240, 37, 36, 36),
 
         appBarTheme: const AppBarTheme(
+          foregroundColor: Colors.white,
+          shadowColor: Colors.black,
           backgroundColor: Colors.red,
+          elevation: 4,
         )
       ),
 
@@ -32,6 +35,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+
         title: Text('KASAP'),
       ),
       body: Center(
