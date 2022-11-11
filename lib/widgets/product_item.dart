@@ -15,8 +15,10 @@ class ProductItem extends StatelessWidget {
         fit: BoxFit.cover,
       ),
       footer: GridTileBar(
-        backgroundColor: Colors.black54,
+        backgroundColor: Colors.black45,
+
         leading: IconButton(
+          color: Color.fromARGB(240, 255, 0, 0),
           icon: Icon(Icons.favorite),
           onPressed: () {  },
         ),
@@ -26,8 +28,12 @@ class ProductItem extends StatelessWidget {
           overflow: TextOverflow.ellipsis,
           maxLines: 2,
         ),
-        trailing: IconButton(icon: Icon(Icons.shopping_cart),
-          onPressed: () {  },),
+        trailing: IconButton(
+          icon: Icon(
+              Icons.shopping_cart),
+          color: Color.fromARGB(240, 255, 0, 0),
+          onPressed: () {  },
+        ),
       ),
     );
   }

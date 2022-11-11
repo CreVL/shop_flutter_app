@@ -9,7 +9,7 @@ class ProductsOverviewScreen extends StatelessWidget {
       title: 'Шашлык из шейки ягненка',
       description: 'Натуральное мясо с шейки ягненка на шпашке',
       price: 500,
-      imageUrl: 'https://ie.wampi.ru/2022/11/10/MYSO2.png',
+      imageUrl: 'https://i.ibb.co/kDFhN9g/safa.jpg',
     ),
     Product(
       id: 'p2',
@@ -104,7 +104,7 @@ class ProductsOverviewScreen extends StatelessWidget {
             loadedProducts[i].title,
             loadedProducts[i].imageUrl),
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
+          crossAxisCount: 1,
           childAspectRatio: 3 / 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,

@@ -1,17 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:shop_flutter_app/widgets/product_item.dart';
 import './screens/products_overview_screen.dart';
+
 
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        colorSchemeSeed: Color.fromARGB(240, 255, 0, 0),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Color.fromARGB(240, 37, 36, 36),
+
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.red,
+        )
+      ),
+
       debugShowCheckedModeBanner: false,
       title: 'Shop',
-      theme: ThemeData.dark(),
       home: ProductsOverviewScreen(),
     );
   }
@@ -22,7 +32,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Shop'),
+        title: Text('KASAP'),
       ),
       body: Center(
         child: Text('Build a shop'),
