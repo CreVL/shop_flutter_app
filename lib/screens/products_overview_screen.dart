@@ -2,7 +2,19 @@ import 'package:flutter/material.dart';
 import '../widgets/products_grid.dart';
 
 
-class ProductsOverviewScreen extends StatelessWidget {
+enum FilterOptions{
+  Favorites,
+  All,
+}
+
+class ProductsOverviewScreen extends StatefulWidget {
+
+  @override
+  State<ProductsOverviewScreen> createState() => _ProductsOverviewScreenState();
+}
+
+class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
+  var _showOnlyFavorites = false;
 
   @override
   Widget build(BuildContext context) {
@@ -11,17 +23,23 @@ class ProductsOverviewScreen extends StatelessWidget {
         title: Text('KASAP'),
         actions: <Widget>[
           PopupMenuButton(
-            onSelected: (int selectedValue){
-              print(selectedValue);
+            onSelected: (FilterOptions selectedValue){
+              setState(() {
+                if (selectedValue == FilterOptions.Favorites){
+                  _showOnlyFavorites = true;
+                }else{
+                  _showOnlyFavorites = false;
+                }
+              });
             },
             icon: Icon(Icons.more_vert,),
             itemBuilder: (_) => [
-              PopupMenuItem(child: Text('Любимое'),value: 0,),
-              PopupMenuItem(child: Text('Все'),value: 1,),
+              PopupMenuItem(child: Text('Любимое'),value: FilterOptions.Favorites,),
+              PopupMenuItem(child: Text('Все'),value: FilterOptions.All,),
           ],),
         ],
       ),
-      body: ProductsGrid(),
+      body: ProductsGrid(_showOnlyFavorites),
     );
   }
 }
