@@ -75,10 +75,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Roboto
+    - family: AlfaSlabOne
       fonts:
-        - asset: assets/fonts/RobotoSlab.ttf
-        - asset: assets/fonts/RobotoFlex.ttf
+        - asset: assets/fonts/AlfaSlabOne-Regular.ttf
           weight: 700
   #   - family: Trajan Pro
   #     fonts:

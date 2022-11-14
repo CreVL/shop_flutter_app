@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       value: Products(),
       child: MaterialApp(
         theme: ThemeData(
-          fontFamily: 'Roboto',
+          fontFamily: 'AlfaSlabOne',
           colorSchemeSeed: Color.fromARGB(240, 255, 0, 0),
           brightness: Brightness.dark,
           scaffoldBackgroundColor: Color.fromARGB(240, 37, 36, 36),
