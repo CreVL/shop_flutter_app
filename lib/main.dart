@@ -6,6 +6,7 @@ import 'package:shop_flutter_app/screens/products_overview_screen.dart';
 import 'package:shop_flutter_app/screens/product_detail_screen.dart';
 import 'package:shop_flutter_app/providers/products_provider.dart';
 import 'package:shop_flutter_app/providers/cart.dart';
+import 'package:shop_flutter_app/screens/cart_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-            fontFamily: 'AlfaSlabOne',
+            fontFamily: 'OpenSans',
             colorSchemeSeed: Color.fromARGB(240, 255, 0, 0),
             brightness: Brightness.dark,
             scaffoldBackgroundColor: Color.fromARGB(240, 37, 36, 36),
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         home: ProductsOverviewScreen(),
         routes: {
           ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
+          CartScreen.routeName: (ctx) => CartScreen(),
         },
       ),
     );
