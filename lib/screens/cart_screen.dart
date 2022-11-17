@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../widgets/cart_item.dart';
 import '../providers/cart.dart' show Cart;
+import '../providers/orders.dart';
 
 
 class CartScreen extends StatelessWidget {
@@ -32,7 +33,18 @@ class CartScreen extends StatelessWidget {
                 Chip(label: Text('\Р${cart.totalAmount}',
                   style: TextStyle(color: Color.fromARGB(240, 255, 255, 255)),),
                   backgroundColor: Color.fromARGB(240, 0, 0, 0),  ),
-                  TextButton(child: Text('Заказать', style: TextStyle(fontSize: 18,color: Color.fromARGB(240, 255, 255, 255) ),), onPressed: (){}, ),
+                  TextButton(
+                    child: Text('Заказать',
+                    style: TextStyle(fontSize: 18,color: Color.fromARGB(240, 255, 255, 255)
+                    ),
+                    ),
+                    onPressed: (){
+                      Provider.of<Orders>(context, listen: false).addOrder(
+                          cart.items.values.toList(),
+                          cart.totalAmount);
+                      cart.clear();
+                    }, ),
+
               ],
               ),
             ),

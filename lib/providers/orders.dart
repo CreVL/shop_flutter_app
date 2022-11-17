@@ -32,8 +32,7 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
   
-  void clear(){
-    _items = {};
-    notifyListeners();
-  }
+
+
+
 }

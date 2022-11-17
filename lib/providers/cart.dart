@@ -10,7 +10,7 @@ class CartItem {
     required this.id,
     required this.title,
     required this.quantity,
-    required this.price,
+      required this.price,
   });
 }
 
@@ -52,6 +52,10 @@ class Cart with ChangeNotifier {
   }
   void removeItem(String productId){
     _items.remove(productId);
+    notifyListeners();
+  }
+  void clear(){
+    _items = {};
     notifyListeners();
   }
 }
