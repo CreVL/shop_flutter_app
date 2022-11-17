@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
             fontFamily: 'OpenSans',
             colorSchemeSeed: Color.fromARGB(240, 255, 0, 0),
             brightness: Brightness.dark,
-            scaffoldBackgroundColor: Color.fromARGB(240, 37, 36, 36),
+            scaffoldBackgroundColor: Color.fromARGB(240, 0, 0, 0),
             appBarTheme: const AppBarTheme(
               foregroundColor: Colors.white,
               shadowColor: Colors.black,
