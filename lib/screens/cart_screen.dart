@@ -44,7 +44,6 @@ class CartScreen extends StatelessWidget {
                           cart.totalAmount);
                       cart.clear();
                     }, ),
-
               ],
               ),
             ),
