@@ -30,7 +30,7 @@ class CartScreen extends StatelessWidget {
                 children: <Widget>[
                 Text('Всего:', style: TextStyle(fontSize: 20),),
                 Spacer(),
-                Chip(label: Text('\Р${cart.totalAmount}',
+                Chip(label: Text('\Р${cart.totalAmount.toStringAsFixed(2)}',
                   style: TextStyle(color: Color.fromARGB(240, 255, 255, 255)),),
                   backgroundColor: Color.fromARGB(240, 0, 0, 0),  ),
                   TextButton(
