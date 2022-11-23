@@ -59,6 +59,17 @@ class ProductItem extends StatelessWidget {
               color: Color.fromARGB(240, 255, 0, 0),
               onPressed: () {
                 cart.addItem(product.id, product.price, product.title);
+                ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content:
+                    Text("Товар добавлен в корзину!", textAlign: TextAlign.left,),
+                    duration: Duration(seconds: 2),
+                    action: SnackBarAction(label: 'ОТМЕНА', textColor: Colors.red, onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                    ),
+                    )
+                );
               },
             ),
           ),
