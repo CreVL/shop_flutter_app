@@ -32,7 +32,7 @@ class CartScreen extends StatelessWidget {
                 Spacer(),
                 Chip(label: Text('\Р${cart.totalAmount.toStringAsFixed(2)}',
                   style: TextStyle(color: Color.fromARGB(240, 255, 255, 255)),),
-                  backgroundColor: Color.fromARGB(240, 0, 0, 0),  ),
+                  backgroundColor: Color.fromARGB(240, 0, 0, 0),),
                   TextButton(
                     child: Text('Заказать',
                     style: TextStyle(fontSize: 18,color: Color.fromARGB(240, 255, 255, 255)
