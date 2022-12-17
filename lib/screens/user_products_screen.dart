@@ -1,0 +1,16 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class UserProductsScreen extends StatelessWidget {
+  const UserProductsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(appBar: AppBar(
+      title: Text('Ваши продукты'),
+      actions: <Widget>[
+
+      ],
+    ));
+  }
+}

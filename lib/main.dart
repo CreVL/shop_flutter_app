@@ -40,7 +40,6 @@ class MyApp extends StatelessWidget {
               elevation: 4,
             )),
         debugShowCheckedModeBanner: false,
-        title: 'Shop',
         home: ProductsOverviewScreen(),
         routes: {
           ProductDetailsScreen.routeName: (ctx) => ProductDetailsScreen(),
@@ -52,16 +51,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('KASAP'),
-      ),
-      body: Center(
-        child: Text('Build a shop'),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}

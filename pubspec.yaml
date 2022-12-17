@@ -80,10 +80,6 @@ flutter:
       fonts:
         - asset: assets/fonts/OpenSans-SemiBold.ttf
           weight: 700
-    - family: Trajan Pro
-      fonts:
-        - asset: assets/fonts/OpenSans-Light.ttf
-          weight: 700
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -30,10 +30,22 @@ class ProductItem extends StatelessWidget {
               product.imageUrl,
               fit: BoxFit.cover,
             ),),
-          header: Text(
-            product.price.toString(),
-            textAlign: TextAlign.center,
-            textScaleFactor: 1.2,
+          header: Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.only(
+                bottomLeft: const Radius.circular(10.0),
+                bottomRight: const Radius.circular(10.0),
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 5.0),
+                color: Colors.black54,
+                child: Text(
+                  product.price.toString(),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1.2,
+                ),
+              ),
+            ),
           ),
           footer: GridTileBar(
             backgroundColor: Colors.black54,
