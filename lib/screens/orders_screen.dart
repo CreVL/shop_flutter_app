@@ -18,9 +18,16 @@ class OrdersScreen extends StatelessWidget {
         title: Text('Ваши заказы'),
       ),
       drawer: AppBox(),
-      body: ListView.builder(
-        itemCount: orderDate.orders.length,
-      itemBuilder: (ctx, i) => OrderItem(orderDate.orders[i]),),
+      body: orderDate.orders.isEmpty
+          ? const Center(
+              child: Text(
+                'Нет действующих заказов',
+              ),
+            )
+          : ListView.builder(
+              itemCount: orderDate.orders.length,
+              itemBuilder: (ctx, i) => OrderItem(orderDate.orders[i]),
+            ),
     );
   }
 }
