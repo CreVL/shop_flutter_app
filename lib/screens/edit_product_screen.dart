@@ -32,6 +32,10 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   void saveForm() {
+    final  isValid  = formKey.currentState?.validate();
+    if(!isValid!){
+      return;
+    }
     formKey.currentState?.save();
     print(editedProduct.title);
     print(editedProduct.description);
@@ -53,7 +57,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Редактирование продукта'),
+        title: Text('Правка позиции'),
         actions: <Widget>[
           IconButton(onPressed: saveForm, icon: Icon(Icons.save))
         ],
@@ -72,6 +76,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (value) {
                   FocusScope.of(context).requestFocus(priceFocus);
                 },
+                validator: (value){
+                  if (value!.isEmpty){
+                    return 'Введите название';
+                  }
+                  return null;
+                } ,
                 onSaved: (value) {
                   editedProduct = Product(
                       title: value.toString(),
