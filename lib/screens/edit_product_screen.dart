@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/providers/product.dart';
 
 class EditProductScreen extends StatefulWidget {
   const EditProductScreen({Key? key}) : super(key: key);
@@ -14,6 +15,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final descriptionFocus = FocusNode();
   final imageUrlController = TextEditingController();
   final imageFocus = FocusNode();
+  final formKey = GlobalKey<FormState>();
+  var editedProduct =
+      Product(id: '', title: '', description: '', price: 0, imageUrl: '');
 
   @override
   void initState() {
@@ -25,6 +29,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
     if (!imageFocus.hasFocus) {
       setState(() {});
     }
+  }
+
+  void saveForm() {
+    formKey.currentState?.save();
+    print(editedProduct.title);
+    print(editedProduct.description);
+    print(editedProduct.price);
+    print(editedProduct.imageUrl);
   }
 
   @override
@@ -42,10 +54,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Редактирование продукта'),
+        actions: <Widget>[
+          IconButton(onPressed: saveForm, icon: Icon(Icons.save))
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
+          key: formKey,
           child: ListView(
             children: <Widget>[
               TextFormField(
@@ -55,6 +71,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 textInputAction: TextInputAction.next,
                 onFieldSubmitted: (value) {
                   FocusScope.of(context).requestFocus(priceFocus);
+                },
+                onSaved: (value) {
+                  editedProduct = Product(
+                      title: value.toString(),
+                      price: editedProduct.price,
+                      description: editedProduct.description,
+                      imageUrl: editedProduct.imageUrl,
+                      id: null.toString());
                 },
               ),
               TextFormField(
@@ -67,6 +91,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (value) {
                   FocusScope.of(context).requestFocus(descriptionFocus);
                 },
+                onSaved: (value) {
+                  editedProduct = Product(
+                      title: editedProduct.title,
+                      price: double.parse(value!),
+                      description: editedProduct.description,
+                      imageUrl: editedProduct.imageUrl,
+                      id: null.toString());
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -75,6 +107,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: descriptionFocus,
+                onSaved: (value) {
+                  editedProduct = Product(
+                      title: editedProduct.title,
+                      price: editedProduct.price,
+                      description: value.toString(),
+                      imageUrl: editedProduct.imageUrl,
+                      id: null.toString());
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -107,6 +147,17 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       textInputAction: TextInputAction.done,
                       controller: imageUrlController,
                       focusNode: imageFocus,
+                      onFieldSubmitted: (_) {
+                        saveForm();
+                      },
+                      onSaved: (value) {
+                        editedProduct = Product(
+                            title: editedProduct.title,
+                            price: editedProduct.price,
+                            description: editedProduct.description,
+                            imageUrl: value.toString(),
+                            id: null.toString());
+                      },
                     ),
                   )
                 ],
