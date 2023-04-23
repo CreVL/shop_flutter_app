@@ -27,13 +27,20 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   void updateImageUrl() {
     if (!imageFocus.hasFocus) {
+      if ((!imageUrlController.text.startsWith('http') &
+              !imageUrlController.text.startsWith('https')) ||
+          (!imageUrlController.text.endsWith('.png') &&
+              !imageUrlController.text.endsWith('.jpg') &&
+              !imageUrlController.text.endsWith('.jpeg'))) {
+        return;
+      }
       setState(() {});
     }
   }
 
   void saveForm() {
-    final  isValid  = formKey.currentState?.validate();
-    if(!isValid!){
+    final isValid = formKey.currentState?.validate();
+    if (!isValid!) {
       return;
     }
     formKey.currentState?.save();
@@ -76,12 +83,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (value) {
                   FocusScope.of(context).requestFocus(priceFocus);
                 },
-                validator: (value){
-                  if (value!.isEmpty){
+                validator: (value) {
+                  if (value!.isEmpty) {
                     return 'Введите название';
                   }
                   return null;
-                } ,
+                },
                 onSaved: (value) {
                   editedProduct = Product(
                       title: value.toString(),
@@ -101,6 +108,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 onFieldSubmitted: (value) {
                   FocusScope.of(context).requestFocus(descriptionFocus);
                 },
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Введите название';
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Введите корректную цену';
+                  }
+                  if (double.parse(value) <= 0) {
+                    return 'Цена не может быть отрицательной';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   editedProduct = Product(
                       title: editedProduct.title,
@@ -117,6 +136,15 @@ class _EditProductScreenState extends State<EditProductScreen> {
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: descriptionFocus,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Введите описание';
+                  }
+                  if (value.length < 10) {
+                    return 'Слишком короткое описание';
+                  }
+                  return null;
+                },
                 onSaved: (value) {
                   editedProduct = Product(
                       title: editedProduct.title,
@@ -159,6 +187,21 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       focusNode: imageFocus,
                       onFieldSubmitted: (_) {
                         saveForm();
+                      },
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Введите URL продукта';
+                        }
+                        if (!value.startsWith('http') &
+                            !value.startsWith('https')) {
+                          return 'Введите корректный URL';
+                        }
+                        if (!value.endsWith('.png') &&
+                            !value.endsWith('.jpg') &&
+                            !value.endsWith('.jpeg')) {
+                          return 'Введите URL допустимого изображения';
+                        }
+                        return null;
                       },
                       onSaved: (value) {
                         editedProduct = Product(
