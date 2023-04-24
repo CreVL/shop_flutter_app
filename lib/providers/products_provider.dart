@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/providers/product.dart';
 
-
 class Products with ChangeNotifier {
   List<Product> _items = [
     Product(
@@ -17,7 +16,7 @@ class Products with ChangeNotifier {
       description: 'Натуральаня барананина на шпашке',
       price: 300,
       imageUrl:
-      'https://ic.wampi.ru/2022/11/10/Screenshot_22b83dfc2e46d5031.png',
+          'https://ic.wampi.ru/2022/11/10/Screenshot_22b83dfc2e46d5031.png',
     ),
     Product(
       id: 'p3',
@@ -25,7 +24,7 @@ class Products with ChangeNotifier {
       description: 'Натуральное мясо говядины ломтиками',
       price: 350,
       imageUrl:
-      'https://im.wampi.ru/2022/11/10/Screenshot_4ce0ac890befe9206.png',
+          'https://im.wampi.ru/2022/11/10/Screenshot_4ce0ac890befe9206.png',
     ),
     Product(
       id: 'p4',
@@ -33,7 +32,7 @@ class Products with ChangeNotifier {
       description: 'Натуральное ягненка ломтиками',
       price: 450,
       imageUrl:
-      'https://ie.wampi.ru/2022/11/10/Screenshot_3e73acb2c61fcf614.png',
+          'https://ie.wampi.ru/2022/11/10/Screenshot_3e73acb2c61fcf614.png',
     ),
     Product(
       id: 'p5',
@@ -41,7 +40,7 @@ class Products with ChangeNotifier {
       description: 'Натуральное мясо с шейки ягненка на шпашке',
       price: 350,
       imageUrl:
-      'https://ic.wampi.ru/2022/11/10/Screenshot_5e9fcd70ee33ceef2.png',
+          'https://ic.wampi.ru/2022/11/10/Screenshot_5e9fcd70ee33ceef2.png',
     ),
     Product(
       id: 'p6',
@@ -77,7 +76,7 @@ class Products with ChangeNotifier {
       description: 'Натуральное мясо с шейки ягненка на шпашке',
       price: 700,
       imageUrl:
-      'https://ie.wampi.ru/2022/11/10/Screenshot_10a14a6c84b64cd9a8.png',
+          'https://ie.wampi.ru/2022/11/10/Screenshot_10a14a6c84b64cd9a8.png',
     ),
     Product(
       id: 'p11',
@@ -104,7 +103,7 @@ class Products with ChangeNotifier {
     return [..._items];
   }
 
-  List<Product> get favoriteItems{
+  List<Product> get favoriteItems {
     return _items.where((prodItem) => prodItem.isFavorite).toList();
   }
 
@@ -117,12 +116,18 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  Product findById(String id){
+  Product findById(String id) {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  void addProduct(){
-    // _items.add(value);
+  void addProduct(Product product) {
+    final newProduct = Product(
+        id: DateTime.now().toString(),
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl);
+    _items.add(newProduct);
     notifyListeners();
   }
 }
