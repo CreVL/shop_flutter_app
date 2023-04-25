@@ -21,11 +21,38 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final formKey = GlobalKey<FormState>();
   var editedProduct =
       Product(id: '', title: '', description: '', price: 0, imageUrl: '');
+  var isInit = true;
+  var initValues = {
+    'title': '',
+    'description': '',
+    'price': '',
+    'imageUrl': '',
+  };
 
   @override
   void initState() {
     imageFocus.addListener(updateImageUrl);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (isInit) {
+      final prodictId = ModalRoute.of(context)?.settings.arguments as String?;
+      if (prodictId != null) {
+        editedProduct =
+            Provider.of<Products>(context, listen: false).findById(prodictId);
+        initValues = {
+          'title': editedProduct.title,
+          'description': editedProduct.description,
+          'price': editedProduct.price.toString(),
+          'imageUrl': '',
+        };
+        imageUrlController.text = editedProduct.imageUrl;
+      }
+    }
+    isInit = false;
+    super.didChangeDependencies();
   }
 
   void updateImageUrl() {
@@ -47,7 +74,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     formKey.currentState?.save();
-    Provider.of<Products>(context, listen: false).addProduct(editedProduct);
+    if (editedProduct.id != '') {
+      Provider.of<Products>(context, listen: false)
+          .updateProduct(editedProduct.id, editedProduct);
+    } else {
+      Provider.of<Products>(context, listen: false).addProduct(editedProduct);
+    }
     Navigator.of(context).pop();
   }
 
@@ -77,6 +109,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
           child: ListView(
             children: <Widget>[
               TextFormField(
+                initialValue: initValues['title'],
                 decoration: InputDecoration(
                   labelText: 'Название',
                 ),
@@ -96,10 +129,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: editedProduct.price,
                       description: editedProduct.description,
                       imageUrl: editedProduct.imageUrl,
-                      id: null.toString());
+                      id: editedProduct.id,
+                      isFavorite: editedProduct.isFavorite);
                 },
               ),
               TextFormField(
+                initialValue: initValues['price'],
                 decoration: InputDecoration(
                   labelText: 'Цена',
                 ),
@@ -127,10 +162,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: double.parse(value!),
                       description: editedProduct.description,
                       imageUrl: editedProduct.imageUrl,
-                      id: null.toString());
+                      id: editedProduct.id,
+                      isFavorite: editedProduct.isFavorite);
                 },
               ),
               TextFormField(
+                initialValue: initValues['description'],
                 decoration: InputDecoration(
                   labelText: 'Описание',
                 ),
@@ -152,7 +189,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       price: editedProduct.price,
                       description: value.toString(),
                       imageUrl: editedProduct.imageUrl,
-                      id: null.toString());
+                      id: editedProduct.id,
+                      isFavorite: editedProduct.isFavorite);
                 },
               ),
               Row(
@@ -210,7 +248,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                             price: editedProduct.price,
                             description: editedProduct.description,
                             imageUrl: value.toString(),
-                            id: null.toString());
+                            id: editedProduct.id,
+                            isFavorite: editedProduct.isFavorite);
                       },
                     ),
                   )
